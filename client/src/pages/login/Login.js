@@ -1,15 +1,22 @@
 import React from "react";
 import { Form, Input } from "antd";
 import "./index.style.scss";
+import toast from "react-hot-toast";
+import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import toast from "react-hot-toast";
+import { hideLoading, showLoading } from "../../redux/alertsSlice"
+
+
 
 function Login() {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const onFinish = async(values) => {
     try {
+      dispatch(showLoading())
       const response = await axios.post("/api/user/login", values);
+      dispatch(hideLoading())
       if (response.data.success) {
         toast.success(response.data.message);
         toast("Redirecting to home page");
@@ -19,6 +26,7 @@ function Login() {
         toast.error(response.data.message);
       }
     } catch (error) {
+      dispatch(hideLoading())
       toast.error("Something went wrong");
     }
   };
@@ -38,7 +46,7 @@ function Login() {
           </Form.Item>
           <button
             className="bg-green-800 text-white h-[40px] w-full mb-3 rounded-lg border-none cursor-pointer active:bg-green-800/60"
-            htmlType="submit"
+            type="submit"
           >
             LOGIN
           </button>
