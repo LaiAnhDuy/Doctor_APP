@@ -3,6 +3,7 @@ import { adminMenu, userMenu } from "./config";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./index.style.scss";
 import { useSelector } from "react-redux";
+import { Badge } from "antd";
 
 function Layout({ children }) {
   const [collapsed, setCollapsed] = useState(false);
@@ -10,7 +11,7 @@ function Layout({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const menuToBeRendered = user?.isAdmin ? adminMenu : userMenu
+  const menuToBeRendered = user?.isAdmin ? adminMenu : userMenu;
   return (
     <div className="p-5">
       <div className="flex">
@@ -22,12 +23,11 @@ function Layout({ children }) {
           }`}
         >
           <div className="">
-            <h1 className="-ml-3 text-white text-4xl">DT</h1>
+            <h1 className="-ml-1 text-white text-4xl">DT</h1>
           </div>
 
           <div className="mt-24">
             {menuToBeRendered.map((menu, index) => {
-              console.log(menu)
               const isActive = location.pathname === menu.path;
               return (
                 <div
@@ -55,9 +55,9 @@ function Layout({ children }) {
                 navigate("/login");
               }}
             >
-              <i className='ri-logout-circle-line'></i>
+              <i className="ri-logout-circle-line"></i>
               {!collapsed && (
-                <Link to='/login' className="text-white no-underline ml-5">
+                <Link to="/login" className="text-white no-underline ml-5">
                   Logout
                 </Link>
               )}
@@ -79,15 +79,18 @@ function Layout({ children }) {
               ></i>
             )}
 
-            <div className="flex items-center pr-3">
-              <i className="ri-notification-line text-xl text-black cursor-pointer mr-3"></i>
-              <Link className="no-underline" to="/profile">
+            <div className="flex items-center pr-10">
+              <Badge count={user?.unseenNotifications.length} onClick={() => navigate('/notifications')}>
+                <i className="ri-notification-line text-xl text-black cursor-pointer "></i>
+              </Badge>
+
+              <Link className="no-underline ml-3" to="/profile">
                 {user?.name}
               </Link>
             </div>
           </div>
 
-          <div className="bg-white rounded-md h-[92vh] shadow-sm shadow-slate-400">
+          <div className="bg-white rounded-md h-[92vh] shadow-sm shadow-slate-400 p-10 pt-1 pb-0">
             {children}
           </div>
         </div>

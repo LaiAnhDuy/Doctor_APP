@@ -12,7 +12,7 @@ function Register() {
   const navigate = useNavigate()
   const onFinish = async (values) => {
     try {
-      dispatch(showLoading)
+      dispatch(showLoading())
       const response = await axios.post("/api/user/register", values);
       dispatch(hideLoading())
       if (response.data.success) {

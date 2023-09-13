@@ -9,6 +9,10 @@ import data from "./animation/animation_llw497kq.json";
 import { useSelector } from "react-redux";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import ApplyDoctor from "./pages/ApplyDoctor/ApplyDoctor";
+import Notifications from "./pages/notifications/Notifications";
+import Userslist from "./pages/admin/Userslist";
+import Doctorslist from "./pages/admin/Doctorslist";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -46,6 +50,38 @@ function App() {
           element={
             <ProtectedRoute>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/apply-doctor"
+          element={
+            <ProtectedRoute>
+              <ApplyDoctor />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute>
+              <Notifications />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/doctors"
+          element={
+            <ProtectedRoute>
+              <Doctorslist />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/users"
+          element={
+            <ProtectedRoute>
+              <Userslist />
             </ProtectedRoute>
           }
         />
