@@ -11,8 +11,12 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 import ApplyDoctor from "./pages/ApplyDoctor/ApplyDoctor";
 import Notifications from "./pages/notifications/Notifications";
-import Userslist from "./pages/admin/Userslist";
-import Doctorslist from "./pages/admin/Doctorslist";
+import UsersList from "./pages/admin/UsersList";
+import DoctorsList from "./pages/admin/DoctorsList";
+import Profile from "./pages/doctor/Profile"
+import BookAppointment from "./pages/bookAppointment/BookAppointment";
+import Appointments from "./pages/appointments/Appointments";
+import DoctorAppointments from "./pages/doctor/DoctorAppointments";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -70,18 +74,50 @@ function App() {
           }
         />
         <Route
-          path="/doctors"
+          path="/admin/userslist"
           element={
             <ProtectedRoute>
-              <Doctorslist />
+              <UsersList />
             </ProtectedRoute>
           }
         />
         <Route
-          path="/users"
+          path="/admin/doctorslist"
           element={
             <ProtectedRoute>
-              <Userslist />
+              <DoctorsList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/doctor/profile/:userId"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/book-appointment/:doctorId"
+          element={
+            <ProtectedRoute>
+              <BookAppointment />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/appointments"
+          element={
+            <ProtectedRoute>
+              <Appointments />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/doctor/appointments"
+          element={
+            <ProtectedRoute>
+              <DoctorAppointments />
             </ProtectedRoute>
           }
         />

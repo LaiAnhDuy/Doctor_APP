@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { adminMenu, userMenu } from "./config";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./index.style.scss";
 import { useSelector } from "react-redux";
@@ -11,7 +10,71 @@ function Layout({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const menuToBeRendered = user?.isAdmin ? adminMenu : userMenu;
+  const userMenu = [
+    {
+      name: "Home",
+      path: "/",
+      icon: "ri-home-line",
+    },
+    {
+      name: "Appointments",
+      path: "/appointments",
+      icon: "ri-file-list-line",
+    },
+    {
+      name: "Apply Doctor",
+      path: "/apply-doctor",
+      icon: "ri-hospital-line",
+    },
+  ];
+
+  const doctorMenu = [
+    {
+      name: "Home",
+      path: "/",
+      icon: "ri-home-line",
+    },
+    {
+      name: "Appointments",
+      path: "/doctor/appointments",
+      icon: "ri-file-list-line",
+    },
+    {
+      name: "Profile",
+      path: `/doctor/profile/${user?._id}`,
+      icon: "ri-user-line",
+    },
+  ];
+
+  const adminMenu = [
+    {
+      name: "Home",
+      path: "/",
+      icon: "ri-home-line",
+    },
+    {
+      name: "Users",
+      path: "/admin/userslist",
+      icon: "ri-user-line",
+    },
+    {
+      name: "Doctors",
+      path: "/admin/doctorslist",
+      icon: "ri-user-star-line",
+    },
+    {
+      name: "Profile",
+      path: "/profile",
+      icon: "ri-user-line",
+    },
+  ];
+
+  const menuToBeRendered = user?.isAdmin
+    ? adminMenu
+    : user?.isDoctor
+    ? doctorMenu
+    : userMenu;
+  const role = user?.isAdmin ? "Admin" : user?.isDoctor ? "Doctor" : "User";
   return (
     <div className="p-5">
       <div className="flex">
@@ -24,6 +87,7 @@ function Layout({ children }) {
         >
           <div className="">
             <h1 className="-ml-1 text-white text-4xl">DT</h1>
+            <h1 className="-ml-1 text-[#ffffffad] text-2xl">{role}</h1>
           </div>
 
           <div className="mt-24">
@@ -65,7 +129,7 @@ function Layout({ children }) {
           </div>
         </div>
 
-        <div className="content w-full">
+        <div className="w-full">
           <div className="bg-white rounded-md shadow-sm shadow-slate-400 mb-5 h-[8vh] flex items-center justify-between">
             {collapsed ? (
               <i
@@ -80,7 +144,10 @@ function Layout({ children }) {
             )}
 
             <div className="flex items-center pr-10">
-              <Badge count={user?.unseenNotifications.length} onClick={() => navigate('/notifications')}>
+              <Badge
+                count={user?.unseenNotifications.length}
+                onClick={() => navigate("/notifications")}
+              >
                 <i className="ri-notification-line text-xl text-black cursor-pointer "></i>
               </Badge>
 
