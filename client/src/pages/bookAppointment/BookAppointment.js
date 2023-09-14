@@ -1,4 +1,4 @@
-import { Button, Col, DatePicker, Row, TimePicker } from "antd";
+import { Col, DatePicker, Row, TimePicker } from "antd";
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
@@ -110,7 +110,7 @@ function BookAppointment() {
     <Layout>
       {doctor && (
         <div>
-          <h1 className="page-title">
+          <h1 className="text-4xl font-normal">
             {doctor.firstName} {doctor.lastName}
           </h1>
           <hr />
@@ -125,7 +125,7 @@ function BookAppointment() {
               />
             </Col>
             <Col span={8} sm={24} xs={24} lg={8}>
-              <h1 className="normal-text">
+              <h1 className="">
                 <b>Timings :</b> {doctor.timings[0]} - {doctor.timings[1]}
               </h1>
               <p>
@@ -160,20 +160,20 @@ function BookAppointment() {
                     setTime(moment(value).format("HH:mm"));
                   }}
                 />
-              {!isAvailable &&   <Button
-                  className="primary-button mt-3 full-width-button"
+              {!isAvailable &&   <button
+                  className="bg-green-800 text-white h-[40px] w-full mb-3 rounded-lg border-none cursor-pointer active:bg-green-800/60 mt-3"
                   onClick={checkAvailability}
                 >
                   Check Availability
-                </Button>}
+                </button>}
 
                 {isAvailable && (
-                  <Button
-                    className="primary-button mt-3 full-width-button"
+                  <button
+                    className="bg-green-800 text-white h-[40px] w-full mb-3 rounded-lg border-none cursor-pointer active:bg-green-800/60 mt-3"
                     onClick={bookNow}
                   >
                     Book Now
-                  </Button>
+                  </button>
                 )}
               </div>
             </Col>

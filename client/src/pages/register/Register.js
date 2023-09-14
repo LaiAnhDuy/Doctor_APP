@@ -30,8 +30,8 @@ function Register() {
 
   return (
     <div className="h-screen flex items-center justify-center bg-indigo-400">
-      <div className="card p-4 w-96 bg-white">
-        <h1 className="font-bold text-[24px] m-0 mb-4 bg-orange-500 text-white w-max px-[10px] py-[2px] -ml-10 rounded-bl-xl">
+      <div className="p-4 w-96 bg-white">
+        <h1 className="-mt-4 font-bold text-[24px] m-0 mb-4 bg-orange-500 text-white w-max px-[10px] py-[2px] -ml-10 rounded-bl-xl">
           Nice to meet you
         </h1>
         <Form layout="vertical" className="font-bold" onFinish={onFinish}>

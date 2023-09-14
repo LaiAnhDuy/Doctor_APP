@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row, TimePicker } from "antd";
+import { Col, Form, Input, Row, TimePicker } from "antd";
 import moment from "moment";
 import React from "react";
 
@@ -17,7 +17,7 @@ function DoctorForm({ onFinish, initialValues }) {
         }),
       }}
     >
-      <h1 className="card-title mt-3">Personal Information</h1>
+      <h1 className="text-3xl font-medium text-[#070202a9] mt-3">Personal Information</h1>
       <Row gutter={20}>
         <Col span={8} xs={24} sm={24} lg={8}>
           <Form.Item
@@ -71,7 +71,7 @@ function DoctorForm({ onFinish, initialValues }) {
         </Col>
       </Row>
       <hr />
-      <h1 className="card-title mt-3">Professional Information</h1>
+      <h1 className="text-3xl font-medium text-[#070202a9] mt-3">Professional Information</h1>
       <Row gutter={20}>
         <Col span={8} xs={24} sm={24} lg={8}>
           <Form.Item
@@ -115,10 +115,10 @@ function DoctorForm({ onFinish, initialValues }) {
         </Col>
       </Row>
 
-      <div className="d-flex justify-content-end">
-        <Button className="primary-button" htmlType="submit">
+      <div className="flex justify-end">
+        <button className="bg-green-800 text-white h-[40px] w-max mb-3 rounded-lg border-none cursor-pointer active:bg-green-800/60" type="submit">
           SUBMIT
-        </Button>
+        </button>
       </div>
     </Form>
   );

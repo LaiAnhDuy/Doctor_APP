@@ -7,9 +7,9 @@ import { Badge } from "antd";
 function Layout({ children }) {
   const [collapsed, setCollapsed] = useState(false);
   const { user } = useSelector((state) => state.user);
+
   const navigate = useNavigate();
   const location = useLocation();
-
   const userMenu = [
     {
       name: "Home",
@@ -151,7 +151,7 @@ function Layout({ children }) {
                 <i className="ri-notification-line text-xl text-black cursor-pointer "></i>
               </Badge>
 
-              <Link className="no-underline ml-3" to="/profile">
+              <Link className="no-underline ml-3 text-black" to="/profile">
                 {user?.name}
               </Link>
             </div>

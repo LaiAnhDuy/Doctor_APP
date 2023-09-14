@@ -5,10 +5,10 @@ function Doctor({ doctor }) {
   const navigate = useNavigate();
   return (
     <div
-      className="card p-2 cursor-pointer"
+      className="p-4 cursor-pointer"
       onClick={() => navigate(`/book-appointment/${doctor._id}`)}
     >
-      <h1 className="card-title">
+      <h1 className="font-bold text-[24px] mb-4 bg-orange-500 text-white w-max px-[10px] py-[2px] rounded-bl-xl">
         {doctor.firstName} {doctor.lastName}
       </h1>
       <hr />
